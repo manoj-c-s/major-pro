@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { useLocalContect } from "../../context/context";
-import MenuItem from "./MenuItem";
+// import MenuItem from "./MenuItem";
 import "./styles.css";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../../lib/firebase";
@@ -17,6 +17,7 @@ const Compose = () => {
   } = useLocalContect();
   const [recipents, setRecipents] = useState("");
   const [subject, setSubject] = useState("");
+  const [change, setChange] = useState("");
   const [body, setBody] = useState("");
   const [id, setId] = useState("");
 
@@ -29,6 +30,10 @@ const Compose = () => {
   };
 
   const sendMail = () => {
+    var strLower = change.toLowerCase();
+    var email1 = strLower.replace(/\s/g, "");
+    const email2 = email1 + "@gmail.com";
+    setRecipents(email2);
     setComposeOpen(false);
     createMailId();
     setSnackbarOpen(true);
@@ -42,7 +47,7 @@ const Compose = () => {
         id: id,
         time: new Date().toLocaleString(),
         category: category,
-        recipents: recipents,
+        recipents: email2,
         subject: subject,
         body: body,
         sender: currentUser.email,
@@ -63,7 +68,7 @@ const Compose = () => {
       .set({
         id: id,
         time: new Date().toLocaleString(),
-        category:category,
+        category: category,
         recipents: recipents,
         subject: subject,
         body: body,
@@ -86,13 +91,13 @@ const Compose = () => {
           />
         </div>
         <input
-          className='compose__input'
-          placeholder='Recipents'
-          value={recipents}
-          onChange={(e) => setRecipents(e.target.value)}
+          className='compose__input composeRecipients'
+          placeholder='Recipients'
+          value={change}
+          onChange={(e) => setChange(e.target.value)}
         />
         <input
-          className='compose__input'
+          className='compose__input composeSubject'
           placeholder='Subject'
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
