@@ -4,7 +4,6 @@ import { useLocalContect } from "../../context/context";
 import "./styles.css";
 import clsx from "clsx";
 import SidebarNavBtn from "./SidebarNavBtn";
-import { Chat, Person } from "@material-ui/icons";
 
 const drawerWidth = 256;
 
@@ -67,7 +66,6 @@ const Sidebar = ({ children }) => {
             <p>Compose</p>
           </div>
           <SidebarNavBtn />
-
         </Drawer>
         {children}
       </div>

@@ -17,7 +17,6 @@ const Compose = () => {
   } = useLocalContect();
   const [recipents, setRecipents] = useState("");
   const [subject, setSubject] = useState("");
-  const [change, setChange] = useState("");
   const [body, setBody] = useState("");
   const [id, setId] = useState("");
 
@@ -30,10 +29,6 @@ const Compose = () => {
   };
 
   const sendMail = () => {
-    var strLower = change.toLowerCase();
-    var email1 = strLower.replace(/\s/g, "");
-    const email2 = email1 + "@gmail.com";
-    setRecipents(email2);
     setComposeOpen(false);
     createMailId();
     setSnackbarOpen(true);
@@ -47,7 +42,7 @@ const Compose = () => {
         id: id,
         time: new Date().toLocaleString(),
         category: category,
-        recipents: email2,
+        recipents: recipents,
         subject: subject,
         body: body,
         sender: currentUser.email,
@@ -93,8 +88,8 @@ const Compose = () => {
         <input
           className='compose__input composeRecipients'
           placeholder='Recipients'
-          value={change}
-          onChange={(e) => setChange(e.target.value)}
+          value={recipents}
+          onChange={(e) => setRecipents(e.target.value)}
         />
         <input
           className='compose__input composeSubject'
@@ -103,7 +98,7 @@ const Compose = () => {
           onChange={(e) => setSubject(e.target.value)}
         />
         <textarea
-          className='compose__textarea'
+          className='compose__textarea composeMsg'
           value={body}
           onChange={(e) => setBody(e.target.value)}
         />

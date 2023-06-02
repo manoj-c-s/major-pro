@@ -6,12 +6,12 @@ import { useLocalContect } from "../../context/context";
 import { db } from "../../lib/firebase";
 import "./styles.css";
 
-const Mail = ({ data }) => {
+const Mail = ({ data }, { key }) => {
   const [starred, setStarred] = useState(false);
   const [important, setImportant] = useState(false);
 
   const { currentUser } = useLocalContect();
-
+  var i;
   const history = useHistory();
 
   const updateRead = () => {
@@ -32,15 +32,25 @@ const Mail = ({ data }) => {
     <div
       onClick={updateRead}
       className={`mail ${data.read === false && "mail--unread"}`}
+      id={data.time.split("/")[1]}
     >
       <div className='mail__texts'>
         {/* //? Sender's name */}
-        <p className='mail__text'>{data.senderName}</p>
+        <p className='mail__text' id='sender'>
+          {data.sender.split("@")[0]}
+        </p>
+        <p className='mail__text' id='reciever'>
+         - {data.recipents.split("@")[0]}
+        </p>
         <div className='mail__titleSubtitle'>
-          <p className='mail__text'>{data.subject}</p>
-          <p className='mail__text mail__body'> - {data.body}</p>
+          <p className='mail__text' id='subject'>
+            - {data.subject}
+          </p>
+          <p className='mail__text mail__body' id='body'>
+            - {data.body}
+          </p>
         </div>
-        <p className='mail__text'>{data.time}</p>
+        <p className='mail__text'> - {data.time}</p>
       </div>
     </div>
   );

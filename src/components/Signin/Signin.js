@@ -39,7 +39,7 @@ function Login() {
         <h1>Sign-in</h1>
 
         <form>
-          <h5>E-mail</h5>
+          <h2>E-mail</h2>
           <input
             type='text'
             value={email}
@@ -48,7 +48,7 @@ function Login() {
             id='email'
           />
 
-          <h5>Password</h5>
+          <h2>Password</h2>
           <input
             type='password'
             value={password}
