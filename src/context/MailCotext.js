@@ -48,6 +48,8 @@ export function MailContextProvider({ children }) {
       let array = receivedMails.filter((e) => {
         return e.category === "Primary";
       });
+      console.log(receivedMails);
+      console.log(sentMails);
       setOnScreenMails(array);
     }
 

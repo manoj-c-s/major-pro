@@ -31,7 +31,7 @@ const SidebarNavBtn = () => {
     setActive("sent");
   };
   return (
-    <div className='sidebar__btns'>
+    <div>
       <div
         onClick={UpdateHome}
         className={`sidebar__btn sidebar__topBtn  ${
@@ -52,12 +52,14 @@ const SidebarNavBtn = () => {
         </div>
       </div>
       <div
+        id='inbox'
         onClick={updatePrimaryActive}
         className={`sidebar__btn sidebar__topBtn  ${
           !drawerOpen && "sidebar__btnClose"
         } ${active === "inbox" && "sidebar__active"}`}
       >
         <div
+          id='inbox'
           className={`sidebar__btnLeft ${
             !drawerOpen && "sidebar__btnLeftClose"
           }`}
@@ -83,6 +85,7 @@ const SidebarNavBtn = () => {
       </div>
 
       <div
+      id="sent"
         onClick={sentActive}
         className={`sidebar__btn sidebar__topBtn  ${
           !drawerOpen && "sidebar__btnClose"
@@ -105,7 +108,8 @@ const SidebarNavBtn = () => {
           )}
         </div>
       </div>
-    </div>
+      </div>
+  
   );
 };
 
